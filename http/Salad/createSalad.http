@@ -1,10 +1,10 @@
-POST http://localhost:5000/ HTTP/1.1
+POST http://localhost:5000/api/salads HTTP/1.1
 Content-Type: application/json
 
 {
-    "name": "Caesar",
+    "name": "NewSalad",
     "weight":1.0,
-    "ingredients":["chiken","bread","salad"],
+    "ingredients":["potato","tomato","chiken"],
     "sauce":"mayonnaise",
     "dietType":"none",
     "spicy":false,

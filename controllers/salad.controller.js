@@ -2,9 +2,9 @@ const {Salad} = require('../models/index')
 
 module.exports.createSalad = async(req,res,next) =>{
     try {
-        const {body} =  req;
+        const {body,ingredients} =  req;
 
-        const createdSalad = await Salad.create(body)
+        const createdSalad = await Salad.create({...body,ingredients})
 
         return res.status(201).send(createdSalad);
     } catch (error) {
@@ -15,7 +15,7 @@ module.exports.createSalad = async(req,res,next) =>{
 module.exports.getAllSalads = async(req,res,next)=>{
     try {
 
-        const salads = await Salad.find()
+        const salads = await Salad.find().populate('ingredients');
 
         if(!salads){
             return res.status(404).send('Salants not found =(')
@@ -32,7 +32,7 @@ module.exports.getSalad = async(req,res,next)=>{
     try {
         const {params: {saladId}} = req;
 
-        const serchedSalad = await Salad.findById(saladId);
+        const serchedSalad = await Salad.findById(saladId).populate('ingredients');
 
         if(!serchedSalad){
             return res.status(404).send('Salad not found =(')
